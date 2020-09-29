@@ -1,22 +1,21 @@
-/* This is an a generic payload parser for LoRaWAN. It will work for any network server.
-** The code find the "payload" variable, sent by your sensor, and parse it if exists.
-** The content of payload variable is always an Hexadecimal value.
-** 
-** Note: Additional variables can be created by the Network Server and sent directly to the bucket. Normally they aren't handled here.
-** 
+/* This is an a generic payload parser for Sigfox
+** The code find the "data" variable, sent by your sensor, and parse it if exists.
+** The content of value from variable "data" is always an Hexadecimal value.
+**
 ** Testing:
 ** You can do manual tests to the parse by using the Device Emulator. Copy and Paste the following JSON:
 ** [{ "variable": "data", "value": "0109611395" }]
 */
 
 // Search the payload variable in the payload global variable. It's contents is always [ { variable, value...}, {variable, value...} ...]
-const payload_raw = payload.find(x => x.variable === 'payload_raw' || x.variable === 'payload' || x.variable === 'data');
+
+const payload_raw = payload.find(x => x.variable === 'data');
 if (payload_raw) {
   try {
     // Convert the data from Hex to Javascript Buffer.
     const buffer = Buffer.from(payload_raw.value, 'hex');
 
-    // Lets say you have a payload of 3 bytes.
+    // Lets say you have a payload of 5 bytes.
     // 0 - Protocol Version
     // 1,2 - Temperature
     // 3,4 - Humidity
