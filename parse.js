@@ -1,4 +1,4 @@
-/* This is an a generic payload parser for Sigfox
+/* This is an a generic payload parser that can be used as a starting point for Sigfox Devices
 ** The code find the "data" variable, sent by your sensor, and parse it if exists.
 ** The content of value from variable "data" is always an Hexadecimal value.
 **
@@ -17,12 +17,12 @@ if (payload_raw) {
     const buffer = Buffer.from(payload_raw.value, 'hex');
 
     // Lets say you have a payload of 5 bytes.
-    // 0 - Protocol Version
-    // 1,2 - Temperature
-    // 3,4 - Humidity
+    // 0 - Counter (1 byte, 0 - 255)
+    // 1,2 - Temperature (multiplied by 100, unit = Celsius)
+    // 3,4 - Humidity (multiplied by 100, unit = Percent)
     // More information about buffers can be found here: https://nodejs.org/api/buffer.html
     const data = [
-      { variable: 'protocol_version', value: buffer.readInt8(0) },
+      { variable: 'counter', value: buffer.readInt8(0) },
       { variable: 'temperature',  value: buffer.readInt16BE(1) / 100, unit: '°C' },
       { variable: 'humidity',  value: buffer.readUInt16BE(3) / 100, unit: '%' },
     ];
