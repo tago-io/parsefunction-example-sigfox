@@ -8,8 +8,9 @@
 */
 
 // Search the payload variable in the payload global variable. It's contents is always [ { variable, value...}, {variable, value...} ...]
-
 const payload_raw = payload.find(x => x.variable === 'data');
+
+// check if payload_raw exists
 if (payload_raw) {
   try {
     // Convert the data from Hex to Javascript Buffer.
