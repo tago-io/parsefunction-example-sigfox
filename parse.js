@@ -20,9 +20,9 @@ if (payload_raw) {
     // 0 - Counter (1 byte, 0 - 255)
     // 1,2 - Temperature (multiplied by 100, unit = Celsius)
     // 3,4 - Humidity (multiplied by 100, unit = Percent)
-    // 5 - Latitude indicator 00 = positive 01 = negative
+    // 5 - Latitude indicator 00 = positive | 01 = negative
     // 6,7 (Latitude value * 10000) / 1000000
-    // 8 - Longitude indicator 00 = positive 01 = negative
+    // 8 - Longitude indicator 00 = positive | 01 = negative
     // 9,10 (Longitude value * 10000) / 1000000
     // More information about buffers can be found here: https://nodejs.org/api/buffer.html
 
