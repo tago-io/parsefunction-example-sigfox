@@ -51,8 +51,8 @@ if (payload_raw) {
     ];
 
     // This will concat the content sent by your device with the content generated in this payload parser.
-    // It also add the field "serie" and "time" to it, copying from your sensor data.
-    payload = payload.concat(data.map(x => ({ ...x, serie: payload_raw.serie, time: payload_raw.time })));
+    // It also add the field "group" and "time" to it, copying from your sensor data.
+    payload = payload.concat(data.map(x => ({ ...x, group: payload_raw.serie || payload_raw.group, time: payload_raw.time })));
   } catch (e) {
     // Print the error to the Live Inspector.
     console.error(e);
